@@ -18,6 +18,9 @@
 		550661C71A32CEF200B2D9FF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C61A32CEF200B2D9FF /* DetailViewController.m */; };
 		550661CA1A32DB0200B2D9FF /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C91A32DB0200B2D9FF /* Stop.m */; };
 		550661CD1A32EF7700B2D9FF /* Departure.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661CC1A32EF7700B2D9FF /* Departure.m */; };
+		556F97FD1A36D13100F9CD0E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F97FC1A36D13100F9CD0E /* MapViewController.m */; };
+		556F97FF1A37891100F9CD0E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556F97FE1A37891100F9CD0E /* CoreLocation.framework */; };
+		558A09201A36CEC30064CA71 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558A091F1A36CEC30064CA71 /* MapKit.framework */; };
 		5594F2271A327CE300F99F01 /* ArcTouchCodeChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594F2261A327CE300F99F01 /* ArcTouchCodeChallengeTests.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,10 @@
 		550661C91A32DB0200B2D9FF /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
 		550661CB1A32EF7700B2D9FF /* Departure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Departure.h; sourceTree = "<group>"; };
 		550661CC1A32EF7700B2D9FF /* Departure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Departure.m; sourceTree = "<group>"; };
+		556F97FB1A36D13100F9CD0E /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		556F97FC1A36D13100F9CD0E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		556F97FE1A37891100F9CD0E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		558A091F1A36CEC30064CA71 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5594F2071A327CE300F99F01 /* ArcTouchCodeChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcTouchCodeChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594F2201A327CE300F99F01 /* ArcTouchCodeChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTouchCodeChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594F2251A327CE300F99F01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556F97FF1A37891100F9CD0E /* CoreLocation.framework in Frameworks */,
+				558A09201A36CEC30064CA71 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +100,8 @@
 		5594F1FE1A327CE300F99F01 = {
 			isa = PBXGroup;
 			children = (
+				556F97FE1A37891100F9CD0E /* CoreLocation.framework */,
+				558A091F1A36CEC30064CA71 /* MapKit.framework */,
 				5594F2091A327CE300F99F01 /* ArcTouchCodeChallenge */,
 				5594F2231A327CE300F99F01 /* ArcTouchCodeChallengeTests */,
 				5594F2081A327CE300F99F01 /* Products */,
@@ -171,6 +182,8 @@
 				550661C61A32CEF200B2D9FF /* DetailViewController.m */,
 				550661AE1A327F7B00B2D9FF /* ListViewController.h */,
 				550661AF1A327F7B00B2D9FF /* ListViewController.m */,
+				556F97FB1A36D13100F9CD0E /* MapViewController.h */,
+				556F97FC1A36D13100F9CD0E /* MapViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -295,6 +308,7 @@
 				550661C41A32875100B2D9FF /* WebServiceManager.m in Sources */,
 				550661AD1A327F6600B2D9FF /* main.m in Sources */,
 				550661CD1A32EF7700B2D9FF /* Departure.m in Sources */,
+				556F97FD1A36D13100F9CD0E /* MapViewController.m in Sources */,
 				550661C11A32836200B2D9FF /* Route.m in Sources */,
 				550661B01A327F7B00B2D9FF /* ListViewController.m in Sources */,
 				550661B31A327F8800B2D9FF /* AppDelegate.m in Sources */,

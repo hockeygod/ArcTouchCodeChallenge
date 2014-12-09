@@ -45,11 +45,73 @@
                             <outlet property="delegate" destination="qLF-bU-bRt" id="CKk-QJ-ZN3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ArcTouch Code Challenge" id="REH-xx-6sJ"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="ArcTouch Code Challenge" id="vFu-Ae-EKo">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="HSA-kA-FhG">
+                            <connections>
+                                <segue destination="s2V-PC-cEk" kind="show" identifier="ShowMapViewController" id="gbM-2s-cqp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="a5u-Zy-WX2" id="AQq-3X-pJ3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGZ-hQ-hEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="469" y="803"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="XUP-PJ-77s">
+            <objects>
+                <viewController id="s2V-PC-cEk" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="usq-E8-yJz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qgy-8w-81k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NhT-mu-JG9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b6Y-eU-eZZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <connections>
+                                    <outlet property="delegate" destination="s2V-PC-cEk" id="9dy-gE-T4n"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long press to drop pin at location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc7-eX-r7P">
+                                <rect key="frame" x="171" y="64" width="259" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b6Y-eU-eZZ" firstAttribute="top" secondItem="usq-E8-yJz" secondAttribute="bottom" id="8tu-la-W4m"/>
+                            <constraint firstItem="lc7-eX-r7P" firstAttribute="top" secondItem="b6Y-eU-eZZ" secondAttribute="top" id="9cw-51-8c2"/>
+                            <constraint firstItem="b6Y-eU-eZZ" firstAttribute="bottom" secondItem="Qgy-8w-81k" secondAttribute="top" id="Bvg-ey-XkD"/>
+                            <constraint firstItem="b6Y-eU-eZZ" firstAttribute="leading" secondItem="NhT-mu-JG9" secondAttribute="leading" id="Gti-jW-NcU"/>
+                            <constraint firstItem="lc7-eX-r7P" firstAttribute="centerX" secondItem="b6Y-eU-eZZ" secondAttribute="centerX" id="jdC-fa-gEX"/>
+                            <constraint firstAttribute="trailing" secondItem="b6Y-eU-eZZ" secondAttribute="trailing" id="rCE-cp-gyN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="uwn-z8-pTJ">
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="dKA-Qv-Cj1">
+                            <connections>
+                                <segue destination="cAR-i2-q76" kind="unwind" unwindAction="unwindToListViewController:" id="Nz1-KE-blM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="b6Y-eU-eZZ" id="xip-Qd-E86"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="75Y-3q-okR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cAR-i2-q76" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="118"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="bkZ-TC-tP6">
@@ -102,7 +164,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="G2r-kn-3ca">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="G2r-kn-3ca">
                                 <rect key="frame" x="16" y="358" width="568" height="220"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>

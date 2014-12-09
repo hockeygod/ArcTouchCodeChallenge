@@ -14,10 +14,10 @@
 
 @interface DetailViewController ()
 #pragma mark - DetailViewController Private Properties -
-@property   IBOutlet    UITableView     *stopsTableView;
-@property               NSArray         *stops;
-@property   IBOutlet    UITableView     *departuresTableView;
-@property               NSArray         *departures;
+@property   (weak)      IBOutlet    UITableView     *stopsTableView;
+@property                           NSArray         *stops;
+@property   (weak)      IBOutlet    UITableView     *departuresTableView;
+@property                           NSArray         *departures;
 @end
 
 @implementation DetailViewController

@@ -6,14 +6,21 @@
 //  Copyright (c) 2014 Eric E. van Leeuwen. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
+
 #import "ListViewController.h"
 #import "DetailViewController.h"
+#import "MapViewController.h"
 #import "../Entities/Route.h"
 #import "../Managers/WebServiceManager.h"
 
 @interface ListViewController ()
 #pragma mark - ListViewController Private Methods -
-@property   NSArray     *routes;
+@property   (weak)  IBOutlet    UISearchBar     *searchBar;
+@property                       NSArray         *routes;
+
+#pragma mark - ListViewController Private Instance Methods -
+- (IBAction)unwindToListViewController:(UIStoryboardSegue *)sender;
 
 @end
 
@@ -25,6 +32,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     //Query WebService for all routes as default
     self.routes = [[WebServiceManager webServiceManager] allRoutes];
+    //Override the bookmarks search bar button image and set text to "Map"
+    [self.searchBar setImage:nil forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +101,19 @@
     //Make sure UITableView is fresh and resign search bar as first responder
     [self.tableView reloadData];
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - ListViewController Private Instance Methods -
+- (IBAction)unwindToListViewController:(UIStoryboardSegue *)sender
+{
+    // As of now, we only handle unwinding from MapViewController but we could handle others by adding else if expressions
+    if ([sender.sourceViewController isKindOfClass:[MapViewController class]])
+    {
+        //User selected stop name from Map View to query WebService for routes, query and reload UITableView
+        self.searchBar.text = ((MapViewController *)sender.sourceViewController).selectedStreetPointAnnotation.title;
+        self.routes = [[WebServiceManager webServiceManager] routesWithStopName:self.searchBar.text];
+        [self.tableView reloadData];
+    }
 }
 
 @end
