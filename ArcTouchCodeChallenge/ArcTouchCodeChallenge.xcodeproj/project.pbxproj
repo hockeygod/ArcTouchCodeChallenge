@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		550661AD1A327F6600B2D9FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661AC1A327F6600B2D9FF /* main.m */; };
+		550661B01A327F7B00B2D9FF /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661AF1A327F7B00B2D9FF /* ListViewController.m */; };
+		550661B31A327F8800B2D9FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661B21A327F8800B2D9FF /* AppDelegate.m */; };
+		550661B91A32801300B2D9FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550661B51A32801300B2D9FF /* LaunchScreen.xib */; };
+		550661BA1A32801300B2D9FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 550661B71A32801300B2D9FF /* Main.storyboard */; };
+		550661BC1A32801C00B2D9FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 550661BB1A32801C00B2D9FF /* Images.xcassets */; };
+		550661C11A32836200B2D9FF /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C01A32836200B2D9FF /* Route.m */; };
+		550661C41A32875100B2D9FF /* WebServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C31A32875100B2D9FF /* WebServiceManager.m */; };
+		550661C71A32CEF200B2D9FF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C61A32CEF200B2D9FF /* DetailViewController.m */; };
+		550661CA1A32DB0200B2D9FF /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661C91A32DB0200B2D9FF /* Stop.m */; };
+		550661CD1A32EF7700B2D9FF /* Departure.m in Sources */ = {isa = PBXBuildFile; fileRef = 550661CC1A32EF7700B2D9FF /* Departure.m */; };
+		556F97FD1A36D13100F9CD0E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F97FC1A36D13100F9CD0E /* MapViewController.m */; };
+		556F97FF1A37891100F9CD0E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 556F97FE1A37891100F9CD0E /* CoreLocation.framework */; };
+		558A09201A36CEC30064CA71 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558A091F1A36CEC30064CA71 /* MapKit.framework */; };
+		5594F2271A327CE300F99F01 /* ArcTouchCodeChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5594F2261A327CE300F99F01 /* ArcTouchCodeChallengeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5594F2211A327CE300F99F01 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5594F1FF1A327CE300F99F01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5594F2061A327CE300F99F01;
+			remoteInfo = ArcTouchCodeChallenge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		550661AC1A327F6600B2D9FF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		550661AE1A327F7B00B2D9FF /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		550661AF1A327F7B00B2D9FF /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		550661B11A327F8800B2D9FF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		550661B21A327F8800B2D9FF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		550661B61A32801300B2D9FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		550661B81A32801300B2D9FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		550661BB1A32801C00B2D9FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		550661BD1A32802400B2D9FF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		550661BF1A32836200B2D9FF /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		550661C01A32836200B2D9FF /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		550661C21A32875100B2D9FF /* WebServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServiceManager.h; sourceTree = "<group>"; };
+		550661C31A32875100B2D9FF /* WebServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServiceManager.m; sourceTree = "<group>"; };
+		550661C51A32CEF200B2D9FF /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		550661C61A32CEF200B2D9FF /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		550661C81A32DB0200B2D9FF /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
+		550661C91A32DB0200B2D9FF /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+		550661CB1A32EF7700B2D9FF /* Departure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Departure.h; sourceTree = "<group>"; };
+		550661CC1A32EF7700B2D9FF /* Departure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Departure.m; sourceTree = "<group>"; };
+		556F97FB1A36D13100F9CD0E /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		556F97FC1A36D13100F9CD0E /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		556F97FE1A37891100F9CD0E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		558A091F1A36CEC30064CA71 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5594F2071A327CE300F99F01 /* ArcTouchCodeChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcTouchCodeChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5594F2201A327CE300F99F01 /* ArcTouchCodeChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArcTouchCodeChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5594F2251A327CE300F99F01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5594F2261A327CE300F99F01 /* ArcTouchCodeChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArcTouchCodeChallengeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5594F2041A327CE300F99F01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				556F97FF1A37891100F9CD0E /* CoreLocation.framework in Frameworks */,
+				558A09201A36CEC30064CA71 /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5594F21D1A327CE300F99F01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		550661B41A327F9500B2D9FF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				550661CB1A32EF7700B2D9FF /* Departure.h */,
+				550661CC1A32EF7700B2D9FF /* Departure.m */,
+				550661BF1A32836200B2D9FF /* Route.h */,
+				550661C01A32836200B2D9FF /* Route.m */,
+				550661C81A32DB0200B2D9FF /* Stop.h */,
+				550661C91A32DB0200B2D9FF /* Stop.m */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		5594F1FE1A327CE300F99F01 = {
+			isa = PBXGroup;
+			children = (
+				556F97FE1A37891100F9CD0E /* CoreLocation.framework */,
+				558A091F1A36CEC30064CA71 /* MapKit.framework */,
+				5594F2091A327CE300F99F01 /* ArcTouchCodeChallenge */,
+				5594F2231A327CE300F99F01 /* ArcTouchCodeChallengeTests */,
+				5594F2081A327CE300F99F01 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5594F2081A327CE300F99F01 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5594F2071A327CE300F99F01 /* ArcTouchCodeChallenge.app */,
+				5594F2201A327CE300F99F01 /* ArcTouchCodeChallengeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5594F2091A327CE300F99F01 /* ArcTouchCodeChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				5594F2311A327D3100F99F01 /* Resources */,
+				5594F2301A327D1F00F99F01 /* Sources */,
+			);
+			path = ArcTouchCodeChallenge;
+			sourceTree = "<group>";
+		};
+		5594F2231A327CE300F99F01 /* ArcTouchCodeChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				5594F2261A327CE300F99F01 /* ArcTouchCodeChallengeTests.m */,
+				5594F2241A327CE300F99F01 /* Supporting Files */,
+			);
+			path = ArcTouchCodeChallengeTests;
+			sourceTree = "<group>";
+		};
+		5594F2241A327CE300F99F01 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5594F2251A327CE300F99F01 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5594F2301A327D1F00F99F01 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5594F2331A327D6A00F99F01 /* Controllers */,
+				5594F2321A327D6200F99F01 /* Delegates */,
+				550661B41A327F9500B2D9FF /* Entities */,
+				5594F2341A327D7000F99F01 /* Managers */,
+				5594F2351A327D8F00F99F01 /* Others */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5594F2311A327D3100F99F01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				550661BB1A32801C00B2D9FF /* Images.xcassets */,
+				550661BD1A32802400B2D9FF /* Info.plist */,
+				550661B51A32801300B2D9FF /* LaunchScreen.xib */,
+				550661B71A32801300B2D9FF /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5594F2321A327D6200F99F01 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				550661B11A327F8800B2D9FF /* AppDelegate.h */,
+				550661B21A327F8800B2D9FF /* AppDelegate.m */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		5594F2331A327D6A00F99F01 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				550661C51A32CEF200B2D9FF /* DetailViewController.h */,
+				550661C61A32CEF200B2D9FF /* DetailViewController.m */,
+				550661AE1A327F7B00B2D9FF /* ListViewController.h */,
+				550661AF1A327F7B00B2D9FF /* ListViewController.m */,
+				556F97FB1A36D13100F9CD0E /* MapViewController.h */,
+				556F97FC1A36D13100F9CD0E /* MapViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5594F2341A327D7000F99F01 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				550661C21A32875100B2D9FF /* WebServiceManager.h */,
+				550661C31A32875100B2D9FF /* WebServiceManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5594F2351A327D8F00F99F01 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				550661AC1A327F6600B2D9FF /* main.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5594F2061A327CE300F99F01 /* ArcTouchCodeChallenge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5594F22A1A327CE300F99F01 /* Build configuration list for PBXNativeTarget "ArcTouchCodeChallenge" */;
+			buildPhases = (
+				5594F2031A327CE300F99F01 /* Sources */,
+				5594F2041A327CE300F99F01 /* Frameworks */,
+				5594F2051A327CE300F99F01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArcTouchCodeChallenge;
+			productName = ArcTouchCodeChallenge;
+			productReference = 5594F2071A327CE300F99F01 /* ArcTouchCodeChallenge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5594F21F1A327CE300F99F01 /* ArcTouchCodeChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5594F22D1A327CE300F99F01 /* Build configuration list for PBXNativeTarget "ArcTouchCodeChallengeTests" */;
+			buildPhases = (
+				5594F21C1A327CE300F99F01 /* Sources */,
+				5594F21D1A327CE300F99F01 /* Frameworks */,
+				5594F21E1A327CE300F99F01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5594F2221A327CE300F99F01 /* PBXTargetDependency */,
+			);
+			name = ArcTouchCodeChallengeTests;
+			productName = ArcTouchCodeChallengeTests;
+			productReference = 5594F2201A327CE300F99F01 /* ArcTouchCodeChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5594F1FF1A327CE300F99F01 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Eric E. van Leeuwen";
+				TargetAttributes = {
+					5594F2061A327CE300F99F01 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					5594F21F1A327CE300F99F01 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 5594F2061A327CE300F99F01;
+					};
+				};
+			};
+			buildConfigurationList = 5594F2021A327CE300F99F01 /* Build configuration list for PBXProject "ArcTouchCodeChallenge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5594F1FE1A327CE300F99F01;
+			productRefGroup = 5594F2081A327CE300F99F01 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5594F2061A327CE300F99F01 /* ArcTouchCodeChallenge */,
+				5594F21F1A327CE300F99F01 /* ArcTouchCodeChallengeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5594F2051A327CE300F99F01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				550661BA1A32801300B2D9FF /* Main.storyboard in Resources */,
+				550661BC1A32801C00B2D9FF /* Images.xcassets in Resources */,
+				550661B91A32801300B2D9FF /* LaunchScreen.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5594F21E1A327CE300F99F01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5594F2031A327CE300F99F01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				550661C41A32875100B2D9FF /* WebServiceManager.m in Sources */,
+				550661AD1A327F6600B2D9FF /* main.m in Sources */,
+				550661CD1A32EF7700B2D9FF /* Departure.m in Sources */,
+				556F97FD1A36D13100F9CD0E /* MapViewController.m in Sources */,
+				550661C11A32836200B2D9FF /* Route.m in Sources */,
+				550661B01A327F7B00B2D9FF /* ListViewController.m in Sources */,
+				550661B31A327F8800B2D9FF /* AppDelegate.m in Sources */,
+				550661C71A32CEF200B2D9FF /* DetailViewController.m in Sources */,
+				550661CA1A32DB0200B2D9FF /* Stop.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5594F21C1A327CE300F99F01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5594F2271A327CE300F99F01 /* ArcTouchCodeChallengeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5594F2221A327CE300F99F01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5594F2061A327CE300F99F01 /* ArcTouchCodeChallenge */;
+			targetProxy = 5594F2211A327CE300F99F01 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		550661B51A32801300B2D9FF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				550661B61A32801300B2D9FF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		550661B71A32801300B2D9FF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				550661B81A32801300B2D9FF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5594F2281A327CE300F99F01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5594F2291A327CE300F99F01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5594F22B1A327CE300F99F01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/$(TARGET_NAME)/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5594F22C1A327CE300F99F01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/$(TARGET_NAME)/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5594F22E1A327CE300F99F01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ArcTouchCodeChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTouchCodeChallenge.app/ArcTouchCodeChallenge";
+			};
+			name = Debug;
+		};
+		5594F22F1A327CE300F99F01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ArcTouchCodeChallengeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArcTouchCodeChallenge.app/ArcTouchCodeChallenge";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5594F2021A327CE300F99F01 /* Build configuration list for PBXProject "ArcTouchCodeChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5594F2281A327CE300F99F01 /* Debug */,
+				5594F2291A327CE300F99F01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5594F22A1A327CE300F99F01 /* Build configuration list for PBXNativeTarget "ArcTouchCodeChallenge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5594F22B1A327CE300F99F01 /* Debug */,
+				5594F22C1A327CE300F99F01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5594F22D1A327CE300F99F01 /* Build configuration list for PBXNativeTarget "ArcTouchCodeChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5594F22E1A327CE300F99F01 /* Debug */,
+				5594F22F1A327CE300F99F01 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5594F1FF1A327CE300F99F01 /* Project object */;
+}
