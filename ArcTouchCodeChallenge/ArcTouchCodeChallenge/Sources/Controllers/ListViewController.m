@@ -16,10 +16,13 @@
 
 @interface ListViewController ()
 #pragma mark - ListViewController Private Methods -
-@property   (weak)  IBOutlet    UISearchBar     *searchBar;
-@property                       NSArray         *routes;
+@property   (weak)  IBOutlet    UISearchBar                 *searchBar;
+@property                       UIActivityIndicatorView     *activityIndicatorView;
+@property                       NSArray                     *routes;
 
 #pragma mark - ListViewController Private Instance Methods -
+- (void)showActivityIndicator;
+- (void)hideActivityIndicator;
 - (IBAction)unwindToListViewController:(UIStoryboardSegue *)sender;
 
 @end
@@ -31,7 +34,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //Query WebService for all routes as default
-    self.routes = [[WebServiceManager webServiceManager] allRoutes];
+    [self showActivityIndicator];
+    [[WebServiceManager webServiceManager] allRoutesWithCompletionHandler:^(NSArray *routes, NSError *error) {
+        if (error == nil)
+        {
+            self.routes = routes;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self hideActivityIndicator];
+            });
+        }
+        else
+        {
+            NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, error);
+        }
+    }];
+    
+    
+    
+    
     //Override the bookmarks search bar button image and set text to "Map"
     [self.searchBar setImage:nil forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
 }
@@ -82,18 +103,44 @@
      */
     if ([searchText isEqualToString:@""])
     {
-        self.routes = [[WebServiceManager webServiceManager] allRoutes];
-        [self.tableView reloadData];
         [searchBar resignFirstResponder];
+        [self showActivityIndicator];
+        [[WebServiceManager webServiceManager] allRoutesWithCompletionHandler:^(NSArray *routes, NSError *error) {
+            if (error == nil)
+            {
+                self.routes = routes;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [self hideActivityIndicator];
+                });
+            }
+            else
+            {
+                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, error);
+            }
+        }];
     }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     //User enter stop name to query WebService for routes, query and reload UITableView
-    self.routes = [[WebServiceManager webServiceManager] routesWithStopName:[searchBar text]];
-    [self.tableView reloadData];
     [searchBar resignFirstResponder];
+    [self showActivityIndicator];
+    [[WebServiceManager webServiceManager] routesWithStopName:searchBar.text completionHandler:^(NSArray *routes, NSError *error) {
+        if (error == nil)
+        {
+            self.routes = routes;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self hideActivityIndicator];
+            });
+        }
+        else
+        {
+            NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, error);
+        }
+    }];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -104,6 +151,24 @@
 }
 
 #pragma mark - ListViewController Private Instance Methods -
+- (void)showActivityIndicator
+{
+    if (self.activityIndicatorView == nil)
+    {
+        self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        self.activityIndicatorView.color = [UIColor blackColor];
+    }
+    self.activityIndicatorView.center = self.tableView.tableHeaderView.center;
+    [self.tableView.tableHeaderView addSubview:self.activityIndicatorView];
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void)hideActivityIndicator
+{
+    [self.activityIndicatorView stopAnimating];
+    [self.activityIndicatorView removeFromSuperview];
+}
+
 - (IBAction)unwindToListViewController:(UIStoryboardSegue *)sender
 {
     // As of now, we only handle unwinding from MapViewController but we could handle others by adding else if expressions
@@ -111,8 +176,21 @@
     {
         //User selected stop name from Map View to query WebService for routes, query and reload UITableView
         self.searchBar.text = ((MapViewController *)sender.sourceViewController).selectedStreetPointAnnotation.title;
-        self.routes = [[WebServiceManager webServiceManager] routesWithStopName:self.searchBar.text];
-        [self.tableView reloadData];
+        [self showActivityIndicator];
+        [[WebServiceManager webServiceManager] routesWithStopName:self.searchBar.text completionHandler:^(NSArray *routes, NSError *error) {
+            if (error == nil)
+            {
+                self.routes = routes;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    [self hideActivityIndicator];
+                });
+            }
+            else
+            {
+                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, error);
+            }
+        }];
     }
 }
 

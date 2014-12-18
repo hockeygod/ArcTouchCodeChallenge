@@ -11,9 +11,15 @@
 #import "../Entities/Route.h"
 #import "../Entities/Stop.h"
 
+#pragma mark - WebServiceManager Private typedefs -
+typedef void (^WebServiceManagerPrivateQueryForRequestURLCompletionHandler) (id result, NSError *error);
+
 @interface WebServiceManager ()
+#pragma mark - WebServiceManager Private Properties -
+@property   NSOperationQueue    *queryOperationQueue;
+
 #pragma mark - WebServiceManager Private Instance Methods -
-- (id)queryForRequestURL:(NSURL *)requestURL requestHTTPBody:(NSData *)requestHTTPBody error:(NSError **)error;
+- (void)queryForRequestURL:(NSURL *)requestURL requestHTTPBody:(NSData *)requestHTTPBody completionHandler:(WebServiceManagerPrivateQueryForRequestURLCompletionHandler)completionHandler;
 
 @end
 
@@ -28,68 +34,64 @@ static  WebServiceManager   *_webServiceManagerSingleton = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _webServiceManagerSingleton = [WebServiceManager new];
+        _webServiceManagerSingleton.queryOperationQueue = [NSOperationQueue new];
     });
     
     return _webServiceManagerSingleton;
 }
 
 #pragma mark - WebServiceManager Instance Methods -
-- (NSArray *)allRoutes
+- (void)allRoutesWithCompletionHandler:(void (^)(NSArray *, NSError *))completionHandler
 {
-    return [self routesWithStopName:nil];
+    return [self routesWithStopName:nil completionHandler:completionHandler];
 }
 
-- (NSArray *)routesWithStopName:(NSString *)stopName
+- (void)routesWithStopName:(NSString *)stopName completionHandler:(WebServiceManagerRoutesCompletionHandler)completionHandler
 {
-    NSArray *returnArray = [NSArray array];
+    NSURL *requestURL = [NSURL URLWithString:@"https://dashboard.appglu.com/v1/queries/findRoutesByStopName/run"];
+    NSString *requestBodyStopName = nil;
+    if (stopName == nil)
+    {
+        requestBodyStopName = @"%";
+    }
+    else
+    {
+        requestBodyStopName = [NSString stringWithFormat:@"%%%@%%", stopName];
+    }
     
-        NSURL *requestURL = [NSURL URLWithString:@"https://dashboard.appglu.com/v1/queries/findRoutesByStopName/run"];
-        NSString *requestBodyStopName = nil;
-        if (stopName == nil)
-        {
-            requestBodyStopName = @"%";
-        }
-        else
-        {
-            requestBodyStopName = [NSString stringWithFormat:@"%%%@%%", stopName];
-        }
-        
-        NSDictionary *requestHTTPBodyDictionary = @{@"params":@{@"stopName":requestBodyStopName}};
-        NSError *jsonSerializationError;
-        NSData *requestHTTPBody = [NSJSONSerialization dataWithJSONObject:requestHTTPBodyDictionary options:NSJSONWritingPrettyPrinted error:&jsonSerializationError];
-        
-        if (jsonSerializationError == nil)
-        {
-            NSError *queryError;
-            id queryResults = [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody error:&queryError];
-            
-            if (queryResults != nil)
+    NSDictionary *requestHTTPBodyDictionary = @{@"params":@{@"stopName":requestBodyStopName}};
+    NSError *jsonSerializationError;
+    NSData *requestHTTPBody = [NSJSONSerialization dataWithJSONObject:requestHTTPBodyDictionary options:NSJSONWritingPrettyPrinted error:&jsonSerializationError];
+    
+    if (jsonSerializationError == nil)
+    {
+        NSError *queryError;
+        [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody completionHandler:^(id result, NSError *error) {
+            if (result != nil)
             {
-                if (queryResults[@"rows"] != nil)
+                if (result[@"rows"] != nil)
                 {
                     NSMutableArray *workingArray = [NSMutableArray array];
-                    [queryResults[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aRoute, NSUInteger idx, BOOL *stop) {
+                    [result[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aRoute, NSUInteger idx, BOOL *stop) {
                         [workingArray addObject:[Route routeFromJsonObject:aRoute]];
                     }];
-                    returnArray = [NSArray arrayWithArray:workingArray];
+                    completionHandler([NSArray arrayWithArray:workingArray], nil);
                 }
             }
             else if (queryError != nil)
             {
-                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, queryError);
+                completionHandler(nil, queryError);
             }
-        }
-        else
-        {
-            NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, jsonSerializationError);
-        }
-    return returnArray;
+        }];
+    }
+    else
+    {
+        completionHandler(nil, jsonSerializationError);
+    }
 }
 
-- (NSArray *)stopsForRouteId:(NSNumber *)routeId
+- (void)stopsForRouteId:(NSNumber *)routeId completionHandler:(WebServiceManagerStopsCompletionHandler)completionHandler
 {
-    NSArray *returnArray = [NSArray array];
-    
     if (routeId != nil)
     {
         NSURL *requestURL = [NSURL URLWithString:@"https://dashboard.appglu.com/v1/queries/findStopsByRouteId/run"];
@@ -101,39 +103,37 @@ static  WebServiceManager   *_webServiceManagerSingleton = nil;
         if (jsonSerializationError == nil)
         {
             NSError *queryError;
-            id queryResults = [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody error:&queryError];
-            
-            if (queryResults != nil)
-            {
-                if (queryResults[@"rows"] != nil)
+            [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody completionHandler:^(id result, NSError *error) {
+                
+                if (result != nil)
                 {
-                    NSMutableArray *workingArray = [NSMutableArray array];
-                    [queryResults[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aStop, NSUInteger idx, BOOL *stop) {
-                        [workingArray addObject:[Stop stopFromJsonObject:aStop]];
-                    }];
-                    [workingArray sortUsingComparator:^NSComparisonResult(Stop *stop1, Stop *stop2) {
-                        return [stop1.sequence compare:stop2.sequence];
-                    }];
-                    returnArray = [NSArray arrayWithArray:workingArray];
+                    if (result[@"rows"] != nil)
+                    {
+                        NSMutableArray *workingArray = [NSMutableArray array];
+                        [result[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aStop, NSUInteger idx, BOOL *stop) {
+                            [workingArray addObject:[Stop stopFromJsonObject:aStop]];
+                        }];
+                        [workingArray sortUsingComparator:^NSComparisonResult(Stop *stop1, Stop *stop2) {
+                            return [stop1.sequence compare:stop2.sequence];
+                        }];
+                        completionHandler([NSArray arrayWithArray:workingArray], nil);
+                    }
                 }
-            }
-            else if (queryError != nil)
-            {
-                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, queryError);
-            }
+                else if (queryError != nil)
+                {
+                    completionHandler(nil, queryError);
+                }
+            }];
         }
         else
         {
-            NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, jsonSerializationError);
+            completionHandler(nil, jsonSerializationError);
         }
     }
-    return returnArray;
 }
 
-- (NSArray *)departuresForRouteId:(NSNumber *)routeId
+- (void)departuresForRouteId:(NSNumber *)routeId completionHandler:(WebServiceManagerDeparturesCompletionHandler)completionHandler
 {
-    NSArray *returnArray = [NSArray array];
-    
     if (routeId != nil)
     {
         NSURL *requestURL = [NSURL URLWithString:@"https://dashboard.appglu.com/v1/queries/findDeparturesByRouteId/run"];
@@ -145,37 +145,34 @@ static  WebServiceManager   *_webServiceManagerSingleton = nil;
         if (jsonSerializationError == nil)
         {
             NSError *queryError;
-            id queryResults = [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody error:&queryError];
-            
-            if (queryResults != nil)
-            {
-                if (queryResults[@"rows"] != nil)
+            [self queryForRequestURL:requestURL requestHTTPBody:requestHTTPBody completionHandler:^(id result, NSError *error) {
+                if (result != nil)
                 {
-                    NSMutableArray *workingArray = [NSMutableArray array];
-                    [queryResults[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aDeparture, NSUInteger idx, BOOL *stop) {
-                        [workingArray addObject:[Departure departureFromJsonObject:aDeparture]];
-                    }];
-                    returnArray = [NSArray arrayWithArray:workingArray];
+                    if (result[@"rows"] != nil)
+                    {
+                        NSMutableArray *workingArray = [NSMutableArray array];
+                        [result[@"rows"] enumerateObjectsUsingBlock:^(NSDictionary *aDeparture, NSUInteger idx, BOOL *stop) {
+                            [workingArray addObject:[Departure departureFromJsonObject:aDeparture]];
+                        }];
+                        completionHandler([NSArray arrayWithArray:workingArray], nil);
+                    }
                 }
-            }
-            else if (queryError != nil)
-            {
-                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, queryError);
-            }
+                else if (queryError != nil)
+                {
+                    completionHandler(nil, queryError);
+                }
+            }];
         }
         else
         {
-            NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, jsonSerializationError);
+            completionHandler(nil, jsonSerializationError);
         }
     }
-    return returnArray;
 }
 
 #pragma mark - WebServiceManager Private Instance Methods -
-- (id)queryForRequestURL:(NSURL *)requestURL requestHTTPBody:(NSData *)requestHTTPBody error:(NSError **)error
+- (void)queryForRequestURL:(NSURL *)requestURL requestHTTPBody:(NSData *)requestHTTPBody completionHandler:(WebServiceManagerPrivateQueryForRequestURLCompletionHandler)completionHandler
 {
-    id returnObject = nil;
-    
     NSMutableURLRequest *allRoutesRequest = [NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.0];
     
     if (allRoutesRequest != nil)
@@ -189,29 +186,39 @@ static  WebServiceManager   *_webServiceManagerSingleton = nil;
         
         if ([NSURLConnection canHandleRequest:allRoutesRequest])
         {
-            NSURLResponse *webServiceResponse;
-            NSError *webServiceResponseError;
-            NSData *webServiceResponseData = [NSURLConnection sendSynchronousRequest:allRoutesRequest returningResponse:&webServiceResponse error:&webServiceResponseError];
-            if (webServiceResponseData != nil)
-            {
-                NSError *jsonDeserializationError;
-                id jsonObject = [NSJSONSerialization JSONObjectWithData:webServiceResponseData options:0 error:&jsonDeserializationError];
-                if (jsonDeserializationError == nil)
+            [NSURLConnection sendAsynchronousRequest:allRoutesRequest queue:self.queryOperationQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                if (connectionError != nil)
                 {
-                    returnObject = jsonObject;
+                    completionHandler(nil, connectionError);
+                }
+                else if (data != nil)
+                {
+                    NSError *jsonDeserializationError;
+                    id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDeserializationError];
+                    if (jsonDeserializationError == nil)
+                    {
+                        completionHandler(jsonObject, nil);
+                    }
+                    else
+                    {
+                        completionHandler(nil, jsonDeserializationError);
+                    }
                 }
                 else
                 {
-                    NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, jsonDeserializationError);
+                    completionHandler(nil, [NSError errorWithDomain:@"ArcTouchCodeChallengeDomain" code:-3 userInfo:@{NSLocalizedDescriptionKey: @"Unknown URL Connection issue"}]);
                 }
-            }
-            else if (webServiceResponseError != nil)
-            {
-                NSLog(@"%s encountered error:\t%@", __PRETTY_FUNCTION__, webServiceResponseError);
-            }
+            }];
+        }
+        else
+        {
+            completionHandler(nil, [NSError errorWithDomain:@"ArcTouchCodeChallengeDomain" code:-2 userInfo:@{NSLocalizedDescriptionKey : @"URL Connection can't handle URL Request"}]);
         }
     }
-    return returnObject;
+    else
+    {
+        completionHandler(nil, [NSError errorWithDomain:@"ArcTouchCodeChallengeDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Failed to create URL Request"}]);
+    }
 }
 
 @end
